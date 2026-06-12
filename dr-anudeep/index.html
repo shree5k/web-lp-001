@@ -32,6 +32,9 @@
             --border-glass: rgba(255, 255, 255, 0.06);
             --border-gold-glass: rgba(201, 166, 107, 0.2);
 
+            --gold-gradient: linear-gradient(165deg, #EDE0C4 0%, var(--gold-champagne) 42%, var(--gold-muted) 78%, #A88852 100%);
+            --gold-gradient-hover: linear-gradient(165deg, #F5EBD4 0%, #DDB978 38%, var(--gold-champagne) 68%, #C4A066 100%);
+
             --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
             --transition-slow: all 0.7s var(--ease-cinematic);
             --transition-med: all 0.4s var(--ease-cinematic);
@@ -70,13 +73,13 @@
         .delay-3 { transition-delay: 0.3s; }
 
         /* --- Navigation --- */
-        nav {
+        #navbar {
             position: fixed; top: 0; width: 100%; z-index: 100;
             padding: 2rem 5%; transition: var(--transition-med);
             border-bottom: 1px solid transparent;
         }
 
-        nav.scrolled {
+        #navbar.scrolled {
             padding: 1rem 5%;
             background: rgba(5, 5, 5, 0.88);
             backdrop-filter: blur(20px);
@@ -193,7 +196,7 @@
             text-transform: uppercase;
             letter-spacing: 0.38em;
             color: var(--gold-champagne);
-            margin-bottom: 2.2rem;
+            margin-bottom: 1.5rem;
             display: block;
         }
 
@@ -221,7 +224,7 @@
             color: var(--text-muted);
             font-weight: 300;
             max-width: 420px;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             line-height: 1.85;
         }
 
@@ -542,20 +545,84 @@
         }
         .bento-card:hover::before { opacity: 1; }
 
-        .card-eyebrow {
-            font-family: var(--font-cinzel);
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            color: var(--text-whisper);
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 1rem;
+        .card-index {
+            display: flex;
+            align-items: stretch;
+            gap: 1.15rem;
+            margin-bottom: 1.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-index-numeral {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.15rem, 2.5vw, 2.9rem);
+            font-weight: 300;
+            line-height: 0.82;
+            letter-spacing: 0.06em;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             transition: var(--transition-med);
         }
-        .bento-card:hover .card-eyebrow { color: var(--gold-champagne); }
+
+        .card-index-numeral::after {
+            content: '.';
+            font-size: 0.42em;
+            vertical-align: super;
+            margin-left: 0.05em;
+            opacity: 0.55;
+            background: linear-gradient(165deg, var(--gold-champagne), var(--gold-muted));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .card-index-numeral--wide {
+            font-size: clamp(1.85rem, 2.1vw, 2.45rem);
+            letter-spacing: 0.04em;
+        }
+
+        .bento-card::after {
+            content: attr(data-index);
+            position: absolute;
+            top: 1.75rem;
+            right: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(4.25rem, 5.5vw, 6.25rem);
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: rgba(201, 166, 107, 0.04);
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            transition: color 0.7s var(--ease-cinematic), transform 0.7s var(--ease-cinematic);
+        }
+
+        .bento-card:hover .card-index::before { opacity: 1; }
+
+        .bento-card:hover .card-index-numeral {
+            background: var(--gold-gradient-hover);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .bento-card:hover::after {
+            color: rgba(201, 166, 107, 0.075);
+            transform: translateY(-3px);
+        }
 
         .bento-card h3 {
             font-size: 2.2rem; margin-bottom: 2rem; color: var(--text-pure);
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-card .service-list,
+        .bento-card .note-italic {
+            position: relative;
+            z-index: 1;
         }
 
         .service-list { list-style: none; }
@@ -662,39 +729,269 @@
             z-index: 1;
         }
 
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem; margin-bottom: 3rem; color: var(--text-pure);
+        .footer-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
         }
-        .footer-logo-prefix {
-            font-family: var(--font-cinzel);
-            font-size: 0.88rem;
-            color: var(--gold-champagne);
-            letter-spacing: 0.22em;
+
+        .footer-brand {
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .footer-brand-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.1rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .footer-brand-line {
+            width: clamp(52px, 11vw, 88px);
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(201, 166, 107, 0.48));
+        }
+
+        .footer-brand-line:last-child {
+            background: linear-gradient(to left, transparent, rgba(201, 166, 107, 0.48));
+        }
+
+        .footer-brand-gem {
+            width: 5px;
+            height: 5px;
+            background: var(--gold-champagne);
+            transform: rotate(45deg);
+            opacity: 0.65;
+            box-shadow: 0 0 14px rgba(201, 166, 107, 0.35);
+            flex-shrink: 0;
+        }
+
+        .footer-brand-prefix {
             display: block;
-            margin-bottom: 0.4rem;
+            font-family: var(--font-cinzel);
+            font-size: 0.54rem;
+            letter-spacing: 0.36em;
             text-transform: uppercase;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.85rem;
         }
-        .footer-links { display: flex; justify-content: center; gap: 3rem; margin-bottom: 4rem; flex-wrap: wrap; }
-        .footer-links a { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-whisper); transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--gold-champagne); }
+
+        .footer-brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.6vw, 2.75rem);
+            font-weight: 300;
+            color: var(--text-pure);
+            letter-spacing: 0.02em;
+            line-height: 1.12;
+        }
+
+        .footer-nav {
+            position: static;
+            width: auto;
+            z-index: auto;
+            padding: 0;
+            border: none;
+            margin-top: 3.75rem;
+        }
+
+        .footer-nav-track {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+        }
+
+        .footer-nav-track::before {
+            content: '';
+            position: absolute;
+            top: 1.18rem;
+            left: 8%;
+            right: 8%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(201, 166, 107, 0.12) 6%,
+                rgba(201, 166, 107, 0.38) 50%,
+                rgba(201, 166, 107, 0.12) 94%,
+                transparent 100%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.4rem;
+            text-decoration: none;
+            padding: 0 0.35rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-nav-seal {
+            display: grid;
+            place-items: center;
+            width: 2.4rem;
+            height: 2.4rem;
+            position: relative;
+            transition: transform 0.5s var(--ease-cinematic);
+        }
+
+        .footer-nav-seal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 166, 107, 0.24);
+            background:
+                radial-gradient(circle at 32% 28%, rgba(201, 166, 107, 0.1), transparent 52%),
+                var(--bg-obsidian);
+            transition: var(--transition-med);
+        }
+
+        .footer-nav-seal::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 166, 107, 0.1);
+            transition: var(--transition-med);
+        }
+
+        .footer-nav-numeral {
+            position: relative;
+            z-index: 1;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.92rem;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: 0.05em;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: var(--transition-med);
+        }
+
+        .footer-nav-numeral::after {
+            content: '.';
+            font-size: 0.42em;
+            vertical-align: super;
+            margin-left: 0.04em;
+            opacity: 0.55;
+            background: linear-gradient(165deg, var(--gold-champagne), var(--gold-muted));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .footer-nav-label {
+            font-family: var(--font-cinzel);
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-whisper);
+            text-align: center;
+            line-height: 1.45;
+            transition: color 0.35s ease, letter-spacing 0.35s ease;
+        }
+
+        .footer-nav-item:hover .footer-nav-seal {
+            transform: translateY(-2px);
+        }
+
+        .footer-nav-item:hover .footer-nav-seal::before {
+            border-color: rgba(201, 166, 107, 0.58);
+            box-shadow:
+                0 0 28px rgba(201, 166, 107, 0.14),
+                inset 0 0 16px rgba(201, 166, 107, 0.07);
+        }
+
+        .footer-nav-item:hover .footer-nav-seal::after {
+            border-color: rgba(201, 166, 107, 0.22);
+        }
+
+        .footer-nav-item:hover .footer-nav-numeral {
+            background: var(--gold-gradient-hover);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .footer-nav-item:hover .footer-nav-label {
+            color: var(--gold-champagne);
+            letter-spacing: 0.2em;
+        }
+
+        .footer-base {
+            margin-top: 4.75rem;
+            text-align: center;
+        }
+
+        .footer-base-rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-base-rule::before,
+        .footer-base-rule::after {
+            content: '';
+            width: clamp(40px, 8vw, 72px);
+            height: 1px;
+            opacity: 0.42;
+        }
+
+        .footer-base-rule::before {
+            background: linear-gradient(to right, transparent, rgba(201, 166, 107, 0.55));
+        }
+
+        .footer-base-rule::after {
+            background: linear-gradient(to left, transparent, rgba(201, 166, 107, 0.55));
+        }
+
+        .footer-base-gem {
+            width: 4px;
+            height: 4px;
+            background: var(--gold-champagne);
+            transform: rotate(45deg);
+            opacity: 0.55;
+            box-shadow: 0 0 10px rgba(201, 166, 107, 0.3);
+            flex-shrink: 0;
+        }
+
         .footer-address {
             font-family: var(--font-cinzel);
-            font-size: 0.62rem;
-            letter-spacing: 0.2em;
+            font-size: 0.56rem;
+            letter-spacing: 0.24em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.9;
+            margin-bottom: 2.75rem;
+            line-height: 2;
+            font-style: normal;
         }
+
         .footer-address strong {
             display: block;
-            color: var(--gold-champagne);
             font-weight: 400;
-            letter-spacing: 0.28em;
-            margin-bottom: 0.4rem;
+            letter-spacing: 0.32em;
+            margin-bottom: 0.35rem;
+            color: var(--gold-champagne);
         }
-        .copyright { color: var(--text-whisper); font-size: 0.75rem; font-weight: 300; }
+
+        .footer-copyright {
+            color: var(--text-whisper);
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.06em;
+        }
 
         /* --- Bespoke Chat Button --- */
         .chat-widget { position: fixed; bottom: 40px; right: 40px; z-index: 100; display: flex; align-items: center; gap: 20px; }
@@ -759,6 +1056,21 @@
             .ethos-pill { font-size: 0.5rem; padding: 0.6rem 1.2rem; }
             .reputation { padding: 6rem 5%; }
             .bento-card { padding: 3rem 2rem; }
+            .bento-card::after { top: 1.25rem; right: 1.25rem; font-size: clamp(3.5rem, 14vw, 4.75rem); }
+            .card-index-numeral { font-size: clamp(1.9rem, 7vw, 2.35rem); }
+            .card-index-numeral--wide { font-size: clamp(1.65rem, 6vw, 2rem); }
+            footer { padding: 5rem 5% 2.5rem; }
+            .footer-nav-track {
+                grid-template-columns: repeat(2, 1fr);
+                row-gap: 2.75rem;
+                column-gap: 0.75rem;
+            }
+            .footer-nav-track::before { display: none; }
+            .footer-nav-seal { width: 2.15rem; height: 2.15rem; }
+            .footer-nav-numeral { font-size: 0.82rem; }
+            .footer-nav-label { font-size: 0.52rem; letter-spacing: 0.12em; }
+            .footer-brand-name { font-size: clamp(1.75rem, 7vw, 2.2rem); }
+            .footer-base { margin-top: 3.5rem; }
             .chat-widget { bottom: 20px; right: 20px; }
         }
     </style>
@@ -793,8 +1105,11 @@
         <div class="hero-inner">
             <div class="hero-content reveal">
                 <span class="hero-eyebrow">Plastic, Reconstructive &amp; Cosmetic Surgery</span>
-                <h1>Modern Cosmetic Surgery,<br><i> Helping you feel like yourself</i></h1>
-                <p class="hero-subtitle">State-of-the-art cosmetic and reconstructive procedures designed to help you look your absolute best—and feel even better.</p>
+                <h1 style="line-height: 1.2;">
+                    Modern Cosmetic Surgery,<br>
+                    <i>Helping You Feel Like Yourself</i>
+                </h1>
+                <p class="hero-subtitle" style="line-height: 1.5;">State-of-the-art cosmetic and reconstructive procedures designed to help you look your absolute best—and feel even better.</p>
                 <a href="https://clinicia.com/calendar/book?u=48267" class="btn-ghost" target="_blank">Book a Consultation</a>
             </div>
         </div>
@@ -828,15 +1143,15 @@
         <div class="bento-grid" id="cards">
 
             <!-- Facial -->
-            <div class="bento-card reveal delay-1">
-                <span class="card-eyebrow">I.</span>
+            <div class="bento-card reveal delay-1" data-index="I">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral">I</span></div>
                 <h3>Facial Aesthetics</h3>
                 <p class="note-italic">Meticulous procedures designed to balance proportions and rejuvenate structural harmony.</p>
             </div>
 
             <!-- Body Contouring -->
-            <div class="bento-card reveal delay-2">
-                <span class="card-eyebrow">II.</span>
+            <div class="bento-card reveal delay-2" data-index="II">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral">II</span></div>
                 <h3>Body Contouring</h3>
                 <ul class="service-list">
                     <li>Gynecomastia Correction</li>
@@ -849,8 +1164,8 @@
             </div>
 
             <!-- Breast -->
-            <div class="bento-card reveal delay-3">
-                <span class="card-eyebrow">III.</span>
+            <div class="bento-card reveal delay-3" data-index="III">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral card-index-numeral--wide">III</span></div>
                 <h3>Breast Surgery</h3>
                 <ul class="service-list">
                     <li>Bespoke Augmentation</li>
@@ -861,8 +1176,8 @@
             </div>
 
             <!-- Hair -->
-            <div class="bento-card reveal delay-1">
-                <span class="card-eyebrow">IV.</span>
+            <div class="bento-card reveal delay-1" data-index="IV">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral">IV</span></div>
                 <h3>Hair Restoration</h3>
                 <ul class="service-list">
                     <li>Follicular Transplant</li>
@@ -872,8 +1187,8 @@
             </div>
 
             <!-- Gynecology -->
-            <div class="bento-card reveal delay-2">
-                <span class="card-eyebrow">V.</span>
+            <div class="bento-card reveal delay-2" data-index="V">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral">V</span></div>
                 <h3>Cosmetic Gynecology</h3>
                 <ul class="service-list">
                     <li>Hymenoplasty</li>
@@ -883,8 +1198,8 @@
             </div>
 
             <!-- Trauma -->
-            <div class="bento-card reveal delay-3">
-                <span class="card-eyebrow">VI.</span>
+            <div class="bento-card reveal delay-3" data-index="VI">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral">VI</span></div>
                 <h3>Trauma &amp; Recon</h3>
                 <ul class="service-list">
                     <li>Facial Bone Reconstruction</li>
@@ -895,8 +1210,8 @@
             </div>
 
             <!-- Hand -->
-            <div class="bento-card reveal delay-1">
-                <span class="card-eyebrow">VII.</span>
+            <div class="bento-card reveal delay-1" data-index="VII">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral card-index-numeral--wide">VII</span></div>
                 <h3>Hand Microsurgery</h3>
                 <ul class="service-list">
                     <li>Tendon &amp; Nerve Repair</li>
@@ -907,8 +1222,8 @@
             </div>
 
             <!-- Specialized Care -->
-            <div class="bento-card reveal delay-2">
-                <span class="card-eyebrow">VIII.</span>
+            <div class="bento-card reveal delay-2" data-index="VIII">
+                <div class="card-index" aria-hidden="true"><span class="card-index-numeral card-index-numeral--wide">VIII</span></div>
                 <h3>Specialized Care</h3>
                 <ul class="service-list">
                     <li>Advanced Wound Management</li>
@@ -972,21 +1287,47 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">
-            <span class="footer-logo-prefix">Dr.</span>
-            Anudeep T Channaiah
+        <div class="footer-inner">
+            <header class="footer-brand">
+                <div class="footer-brand-ornament" aria-hidden="true">
+                    <span class="footer-brand-line"></span>
+                    <span class="footer-brand-gem"></span>
+                    <span class="footer-brand-line"></span>
+                </div>
+                <span class="footer-brand-prefix">Dr.</span>
+                <p class="footer-brand-name">Anudeep T Channaiah</p>
+            </header>
+
+            <nav class="footer-nav" aria-label="Footer">
+                <div class="footer-nav-track">
+                    <a href="https://www.dranudeep.in/about" class="footer-nav-item">
+                        <span class="footer-nav-seal"><span class="footer-nav-numeral">I</span></span>
+                        <span class="footer-nav-label">The Surgeon</span>
+                    </a>
+                    <a href="#portfolio" class="footer-nav-item">
+                        <span class="footer-nav-seal"><span class="footer-nav-numeral">II</span></span>
+                        <span class="footer-nav-label">Expertise</span>
+                    </a>
+                    <a href="https://www.dranudeep.in/reviews" class="footer-nav-item">
+                        <span class="footer-nav-seal"><span class="footer-nav-numeral">III</span></span>
+                        <span class="footer-nav-label">Patient Stories</span>
+                    </a>
+                    <a href="https://www.dranudeep.in/contact" class="footer-nav-item">
+                        <span class="footer-nav-seal"><span class="footer-nav-numeral">IV</span></span>
+                        <span class="footer-nav-label">Contact Clinic</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="footer-base">
+                <div class="footer-base-rule" aria-hidden="true"><span class="footer-base-gem"></span></div>
+                <address class="footer-address">
+                    <strong>Mysore Aesthetics</strong>
+                    Saraswathipuram, Mysuru
+                </address>
+                <p class="footer-copyright">Copyright &copy; 2026 Anudeep T Channaiah. All rights reserved.</p>
+            </div>
         </div>
-        <div class="footer-links">
-            <a href="https://www.dranudeep.in/about">The Surgeon</a>
-            <a href="#portfolio">Expertise</a>
-            <a href="https://www.dranudeep.in/reviews">Patient Stories</a>
-            <a href="https://www.dranudeep.in/contact">Contact Clinic</a>
-        </div>
-        <p class="footer-address">
-            <strong>Mysore Aesthetics</strong>
-            Saraswathipuram, Mysuru
-        </p>
-        <p class="copyright">Copyright &copy; 2026 Anudeep T Channaiah. All rights reserved.</p>
     </footer>
 
     <!-- Interactive Scripts -->
