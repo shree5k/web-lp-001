@@ -1,0 +1,129 @@
+{
+  "source": "https://dranudeep.in/services/",
+  "checked": "2026-10-31",
+  "categories": [
+    {
+      "id": "facial-aesthetics",
+      "title": "Facial cosmetic procedures",
+      "summary": "Facial features, skin texture and rejuvenation.",
+      "procedures": [
+        "Rhinoplasty",
+        "Scar treatment",
+        "Fat grafting",
+        "Botox",
+        "Fillers",
+        "PRP",
+        "Microneedling",
+        "Laser hair removal",
+        "Face lift and thread lift",
+        "Blepharoplasty",
+        "Chemical peels",
+        "Laser tattoo removal"
+      ]
+    },
+    {
+      "id": "body-contouring",
+      "title": "Body contouring",
+      "summary": "Care for changes in body shape and proportion.",
+      "procedures": [
+        "Gynecomastia correction",
+        "Abdominoplasty (tummy tuck)",
+        "Mommy makeover",
+        "Liposuction",
+        "Back and hip contouring",
+        "Buttock contouring"
+      ]
+    },
+    {
+      "id": "hair-restoration",
+      "title": "Hair restoration",
+      "summary": "Assessment and options for hair loss.",
+      "procedures": [
+        "PRP and GFC",
+        "Stem cell treatment",
+        "Hair transplant"
+      ]
+    },
+    {
+      "id": "cosmetic-gynecology",
+      "title": "Cosmetic gynecology",
+      "summary": "A private conversation about your concerns.",
+      "procedures": [
+        "Hymenoplasty",
+        "Labiaplasty",
+        "Vaginal tightening"
+      ]
+    },
+    {
+      "id": "varicose-veins",
+      "title": "Varicose vein treatment",
+      "summary": "Procedures listed for varicose vein care.",
+      "procedures": [
+        "Laser (EVLT)",
+        "Radiofrequency ablation (RFA)",
+        "Sclerotherapy"
+      ]
+    },
+    {
+      "id": "wound-care",
+      "title": "Wound care",
+      "summary": "Care for persistent wounds and diabetic foot concerns.",
+      "procedures": [
+        "Advanced wound care",
+        "Diabetic foot care"
+      ]
+    },
+    {
+      "id": "breast-surgery",
+      "title": "Breast surgery",
+      "summary": "Breast size, shape and lump concerns.",
+      "procedures": [
+        "Breast lump excision",
+        "Breast augmentation",
+        "Breast reduction",
+        "Breast reshaping"
+      ]
+    },
+    {
+      "id": "hand-surgery",
+      "title": "Hand surgery",
+      "summary": "Injury, movement and sensation in the hand.",
+      "procedures": [
+        "Hand trauma",
+        "Hand fractures",
+        "Tendon injury",
+        "Artery injury",
+        "Nerve injury",
+        "Carpal tunnel syndrome"
+      ]
+    },
+    {
+      "id": "trauma",
+      "title": "Trauma",
+      "summary": "Surgical care following injury.",
+      "procedures": [
+        "Facial trauma",
+        "Facial bone fractures",
+        "Upper and lower limb trauma"
+      ]
+    },
+    {
+      "id": "cancer-reconstruction",
+      "title": "Cancer reconstruction surgery",
+      "summary": "Reconstructive care following cancer treatment.",
+      "procedures": [
+        "Head and neck cancer reconstruction",
+        "Breast cancer reconstruction",
+        "Upper and lower limb cancer reconstruction"
+      ]
+    },
+    {
+      "id": "dialysis-access",
+      "title": "Dialysis access",
+      "summary": "Surgical access for dialysis.",
+      "procedures": [
+        "AV fistula for dialysis"
+      ]
+    }
+  ]
+}

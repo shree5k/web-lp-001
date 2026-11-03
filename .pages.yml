@@ -1,0 +1,123 @@
+# Pages CMS reads this file from the repository root.
+media:
+  input: dr-anudeep-v2/assets/images/blog
+  output: /assets/images/blog
+  categories: [image]
+  extensions: [jpg, jpeg, png, webp, avif]
+  rename: safe
+
+content:
+  - name: articles
+    label: Articles
+    type: collection
+    path: dr-anudeep-v2/content/blog
+    format: yaml-frontmatter
+    subfolders: false
+    # The first title determines the permanent URL; later title edits do not rename it.
+    filename:
+      template: "{fields.title}.md"
+      field: false
+    operations:
+      create: true
+      rename: false
+      delete: true
+    exclude: [first-consultation.md, planning-time-for-recovery.md, questions-worth-asking.md]
+    view:
+      primary: title
+      fields: [title, status, date, category]
+      sort: [date, title, status]
+      search: [title, summary, category]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Article title
+        type: string
+        required: true
+        description: Use a descriptive title. The first title creates the article URL; you can edit the title later without changing that URL.
+      - name: category
+        label: Topic
+        type: select
+        required: true
+        options:
+          values: [Consultation, Facial Aesthetics, Body Contouring, Reconstruction, Recovery]
+      - name: summary
+        label: Short introduction
+        type: text
+        required: true
+        description: One or two sentences to introduce the article in listings and search results.
+      - name: cover
+        label: Cover image
+        type: image
+        required: true
+        description: Choose or upload a suitable image using the media picker.
+      - name: coverAlt
+        label: Describe the image
+        type: string
+        required: true
+        description: A brief description for readers who cannot see the image.
+      - name: body
+        label: Write your article
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          switcher: false
+      - name: date
+        label: Article date
+        type: date
+        required: true
+        description: Choose the date displayed on the article. This does not schedule publication.
+        options:
+          time: false
+          format: yyyy-MM-dd
+      - name: status
+        label: Publication status
+        type: select
+        required: true
+        default: draft
+        description: Draft stays off the website. Select Published and save only when ready. Once hosting is connected, the article appears after a successful site build. Edits to published articles go live on save; choose Draft first if you need to withdraw one.
+        options:
+          values:
+            - name: draft
+              label: Draft — keep off the website
+            - name: published
+              label: Published — show on the website
+      - name: advanced
+        label: Optional settings
+        type: object
+        description: Usually no changes are needed. The author defaults to Dr. Anudeep T Channaiah, and the short introduction is used for search results.
+        fields:
+          - name: author
+            label: Author override
+            type: string
+            description: Leave empty to use Dr. Anudeep T Channaiah. Enter another name only when that person is responsible for the approved article.
+          - name: featured
+            label: Feature in the journal
+            type: boolean
+            description: Prioritise this article at the top of its listing.
+          - name: seoDescription
+            label: Search introduction override
+            type: text
+            description: Optional. Leave empty to use the short introduction.
+      - name: slug
+        type: string
+        hidden: true
+        readonly: true
+      - name: author
+        type: string
+        hidden: true
+        readonly: true
+      - name: featured
+        type: boolean
+        hidden: true
+        readonly: true
+      - name: seoDescription
+        type: text
+        hidden: true
+        readonly: true
+      - name: demo
+        type: boolean
+        hidden: true
+        readonly: true

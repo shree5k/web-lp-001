@@ -1,0 +1,45 @@
+/* Clinic social journal; real covers, with video fetched only on selection. */
+.clinic-reels { overflow: hidden; background: #f4f0e7; }
+.clinic-reels__heading { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; margin-bottom: 52px; }
+.clinic-reels .refined-eyebrow { font-size: 10px; letter-spacing: .16em; color: #75614a; }
+.clinic-reels h2 { margin: 0; color: #29251f; font: 400 clamp(38px,4vw,60px)/1.1 var(--font-display); letter-spacing: -.035em; }
+.clinic-reels__intro { max-width: 35ch; justify-self: end; }
+.clinic-reels__intro p { color: #686056; font-size: 14px; line-height: 1.8; }
+.clinic-reels__profile { display: inline-flex; gap: 24px; align-items: center; min-height: 44px; margin-top: 12px; color: #494137; font-size: 12px; border-bottom: 1px solid #c9bca7; }
+.clinic-reels__rail { display: flex; align-items: flex-start; justify-content: center; gap: clamp(24px,4vw,56px); padding: 24px 20px 42px; }
+.clinic-reel { display: block; flex: 1 1 0; min-width: 0; max-width: 280px; color: inherit; transform: rotate(-2deg) translateY(10px); transition: transform .45s cubic-bezier(.22,1,.36,1); }
+.clinic-reel:nth-child(2) { transform: rotate(2deg) translateY(-10px); }
+.clinic-reel:nth-child(3) { transform: rotate(-1.5deg) translateY(14px); }
+.clinic-reel__poster { position: relative; padding: 6px; background: #fbf8f2; border-radius: 18px; box-shadow: 0 12px 30px #29251f12; }
+.clinic-reel__poster img { display: block; width: 100%; aspect-ratio: 9/16; height: auto; object-fit: cover; border-radius: 12px; }
+.clinic-reel__badge { position: absolute; bottom: 18px; left: 18px; display: inline-flex; align-items: center; gap: 24px; min-height: 32px; padding: 6px 12px; border-radius: 999px; background: #1b1915bd; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #f3eee4; font: 11px/1.4 var(--font-body); }
+.clinic-reel__caption { padding: 20px 6px 0; }
+.clinic-reel__caption p { margin: 0 0 8px; color: #75614a; font: 9px/1.5 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+.clinic-reel__caption h3 { margin: 0 0 10px; color: #393228; font: 400 clamp(21px,2vw,26px)/1.25 var(--font-display); letter-spacing: -.02em; }
+.clinic-reel__credit { display: block; color: #75614a; font: 10px/1.5 var(--font-body); }
+
+
+@media (hover: hover) and (pointer: fine) {
+ .clinic-reel:hover { transform: rotate(0) translateY(-8px); }
+}
+.clinic-reel:focus-visible { transform: rotate(0); border-radius: 18px; }
+.reels-dialog { width: min(94vw,460px); max-height: 92svh; margin: auto; padding: 0; overflow-y: auto; border: 0; border-radius: 16px; background: #fbf8f2; color: #29251f; }
+.reels-dialog::backdrop { background: #000b; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.reels-dialog__header { position: relative; padding: 20px 60px 20px 20px; }
+.reels-dialog__header p { margin: 0 0 6px; color: #75614a; font: 9px/1.4 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+.reels-dialog__header h2 { margin: 0; font: 400 22px/1.25 var(--font-display); }
+.reels-dialog__embed iframe { display: block; width: 100%; height: min(70svh,720px); border: 0; background: #fff; }
+.reels-dialog__original { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px; color: #494137; font: 12px/1.5 var(--font-body); text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 767px) {
+ .clinic-reels__heading { grid-template-columns: 1fr; gap: 24px; margin-bottom: 28px; }
+ .clinic-reels__intro { justify-self: start; }
+ .clinic-reels__rail { justify-content: flex-start; gap: 22px; margin-inline: -20px; padding: 20px 20px 32px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+ .clinic-reels__rail::-webkit-scrollbar { display: none; }
+ .clinic-reel { flex: 0 0 74%; max-width: 280px; scroll-snap-align: center; }
+ .clinic-reel, .clinic-reel:nth-child(2), .clinic-reel:nth-child(3) { transform: none; }
+ .clinic-reel__caption h3 { font-size: 25px; }
+
+}
+@media (prefers-reduced-motion: reduce) {
+ .clinic-reel, .clinic-reel:nth-child(2), .clinic-reel:nth-child(3), .clinic-reel:hover { transform: none; transition: none; }
+}

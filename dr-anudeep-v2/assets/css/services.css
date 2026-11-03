@@ -1,0 +1,65 @@
+/* Editorial services page. These styles never load on the landing page. */
+body.services-page {
+ --surface-page: #f4f0e7;
+ --text-heading: #29251f;
+ --text-body: #686056;
+ --text-accent: #75614a;
+ --page-gutter: clamp(24px,4.8vw,80px);
+ --container-main: 1320px;
+}
+.services-main { padding-bottom: 88px; }
+.services-page .refined-eyebrow { margin: 0 0 24px; font-size: 10px; letter-spacing: .18em; }
+.services-catalog { display: grid; grid-template-columns: 240px minmax(0,1fr); gap: clamp(40px,6vw,88px); align-items: start; padding-top: 88px; }
+.services-sidebar { position: sticky; top: 128px; min-width: 0; scroll-margin-top: 48px; }
+.services-sidebar .refined-eyebrow { padding-bottom: 20px; margin-bottom: 12px; border-bottom: 1px solid var(--border-subtle); }
+.services-index { max-height: calc(100svh - 200px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent; }
+.services-index a { display: flex; align-items: baseline; gap: 10px; min-height: 46px; padding: 11px 8px; border-radius: 4px; color: #5f574c; font-size: 13px; line-height: 1.5; transition: color .2s, background-color .2s; }
+.services-index__label { flex: 1; min-width: 0; }
+.services-index a > span:first-child { flex: 0 0 20px; color: #88745c; font-size: 10px; font-variant-numeric: tabular-nums; }
+.services-index__arrow { flex: 0 0 12px; margin-left: auto; opacity: 0; transition: opacity .2s; }
+.services-index a:is(:hover,:focus-visible) { color: var(--text-heading); background-color: #e8e1d380; }
+.services-index a:is(:hover,:focus-visible) .services-index__arrow { opacity: 1; }
+.services-entries { min-width: 0; }
+.services-entry { padding: 48px 0; border-top: 1px solid var(--border-subtle); scroll-margin-top: 48px; }
+.services-entry:first-child { padding-top: 0; border-top: 0; }
+.services-entry--visual { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1.35fr); gap: 32px; align-items: start; }
+.services-entry__image { margin: 0; aspect-ratio: 3/4; overflow: hidden; border-radius: 6px; background: #e8e1d3; }
+.services-entry__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.services-entry__content { min-width: 0; }
+.services-entry__heading { display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 12px; align-items: start; }
+.services-number { display: block; padding-top: 9px; color: #88745c; font-size: 10px; }
+.services-entry h2 { margin: 0 0 14px; color: var(--text-heading); font: 400 clamp(30px,2.8vw,40px)/1.13 var(--font-display); letter-spacing: -.03em; }
+.services-entry__heading p { max-width: 34ch; margin: 0; color: var(--text-body); font-size: 12px; line-height: 1.8; }
+.services-procedures { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-content: start; gap: 0 20px; margin: 24px 0 0 38px; padding: 0; list-style: none; }
+.services-procedures li { padding: 11px 0; border-top: 1px solid #d9d0c080; color: #494137; font-size: 12px; line-height: 1.65; }
+@media (max-width: 1100px) {
+.services-catalog { grid-template-columns: 200px minmax(0,1fr); gap: 36px; }
+.services-entry--visual { grid-template-columns: 140px minmax(0,1fr); gap: 24px; }
+.services-entry h2 { font-size: 32px; }
+.services-procedures { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+.services-main { padding-bottom: 64px; }
+.services-catalog { grid-template-columns: 1fr; gap: 36px; padding-top: 48px; }
+.services-sidebar { position: static; }
+.services-sidebar .refined-eyebrow { padding-bottom: 0; border: 0; }
+.services-index { display: flex; gap: 12px; max-height: none; overflow-x: auto; padding: 4px 0 12px; }
+.services-index a { flex: 0 0 auto; padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); font-size: 12px; }
+.services-index__arrow { display: none; }
+.services-entry { padding-block: 36px; }
+.services-entry--visual { grid-template-columns: 90px minmax(0,1fr); gap: 20px; }
+.services-entry__image { aspect-ratio: 3/5; }
+.services-entry__heading { grid-template-columns: 1fr; gap: 10px; }
+.services-number { padding: 0; }
+.services-entry h2 { font-size: 29px; }
+.services-entry__heading p { font-size: 11px; }
+.services-procedures { margin: 20px 0 0; grid-template-columns: 1fr; }
+.services-procedures li { padding: 9px 0; font-size: 12px; }
+}
+@media (max-width: 380px) {
+.services-entry--visual { grid-template-columns: 1fr; }
+.services-entry__image { aspect-ratio: 5/3; max-height: 200px; }
+}
+@media (prefers-reduced-motion: reduce) {
+.services-entry:hover .services-entry__image img { transform: none; }
+}
